@@ -8,7 +8,7 @@ struct artist {
     uint256 totalTicketSold;
 }
 
-struct venue {
+struct venue { //la maj
     bytes32 name;
     uint256 capacity;
     uint256 commission;
