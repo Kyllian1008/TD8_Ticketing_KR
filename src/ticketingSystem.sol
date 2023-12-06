@@ -45,26 +45,20 @@ contract  TicketingSystem {
     mapping(uint256 => ticket) public ticketsRegister;
 
     function createArtist(bytes32 _name,uint256 _artistCategory) public {
-        //declaration de la varibale newArtist avec memory qui stock en memoire les valeurs
         artist memory newArtist = artist(_name,_artistCategory,msg.sender,0);
-        //enregistrer le nouvel artiste dans le registre
         artistsRegister[artistCount] = newArtist;
         artistCount++;
     }
 
-    function modifyArtist(uint256 _artistId,bytes32 _name,uint256 _artistCategory,address _owner) public {
-        //verifier que l'artiste existe
+    function modifyArtist(uint256 _artistId,bytes32 _name,uint256 _artistCategory,address _owner) public 
         require(artistsRegister[ _artistId].owner == msg.sender,"not the owner");
-        //modifier les informations de l'artiste
         artistsRegister[ _artistId].name = _name;
         artistsRegister[ _artistId].artistCategory = _artistCategory;
         artistsRegister[ _artistId].owner = _owner;
     }
 
     function createVenue(bytes32 _name, uint256 _capacity, uint256 _Comission) public {
-        //declaration de la variable newVenue avec memory qui stock en memoire les valeurs
         venue memory newVenue = venue(_name,_capacity,_Comission,msg.sender);
-        //enregistrer le nouvel artiste dans le registre
         venuesRegister[venueCount] = newVenue;
         venueCount++;
     }
