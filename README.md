@@ -1,4 +1,5 @@
-<<<<<<< HEAD # Kyllian Rousseleau
+<<<<<<< HEAD 
+# Kyllian Rousseleau
 # Test Driven Programming
 
 The goal of this TD is to understand the concept of test driven development. Write tests first, contracts after.
