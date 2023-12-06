@@ -44,35 +44,35 @@ contract  TicketingSystem {
     mapping(uint256 => concert) public concertsRegister;
     mapping(uint256 => ticket) public ticketsRegister;
 
-//creation de la fonction artist avec (2 arguments nom et categorie) 1/1
+
     function createArtist(bytes32 _name,uint256 _artistCategory) public {
-        //declaration de la varibale newArtist avec memory qui stock en memoire les valeurs
+
         artist memory newArtist = artist(_name,_artistCategory,msg.sender,0);
-        //enregistrer le nouvel artiste dans le registre
+
         artistsRegister[artistCount] = newArtist;
         artistCount++;
     }
 
-//fonction modification artiste 1/1
+
     function modifyArtist(uint256 _artistId,bytes32 _name,uint256 _artistCategory,address _owner) public {
-        //verifier que l'artiste existe
+
         require(artistsRegister[ _artistId].owner == msg.sender,"not the owner");
-        //modifier les informations de l'artiste
+
         artistsRegister[ _artistId].name = _name;
         artistsRegister[ _artistId].artistCategory = _artistCategory;
         artistsRegister[ _artistId].owner = _owner;
     }
 
-//fonction venue creation 1/1
+
     function createVenue(bytes32 _name, uint256 _capacity, uint256 _Comission) public {
-        //declaration de la variable newVenue avec memory qui stock en memoire les valeurs
+
         venue memory newVenue = venue(_name,_capacity,_Comission,msg.sender);
-        //enregistrer le nouvel artiste dans le registre
+
         venuesRegister[venueCount] = newVenue;
         venueCount++;
     }
 
-//fonction modification venue 1/1
+
     function modifyVenue(
         uint256 _venueId,
         bytes32 _name,
@@ -87,14 +87,14 @@ contract  TicketingSystem {
         venuesRegister[ _venueId].owner = _newOwner;
     }
 
-//fonction creation concert 1/1
+
     function createConcert(uint _artistId, uint _venueId, uint _concertDate, uint _ticketPrice) public {
         concert memory newConcert = concert(_artistId,_venueId,_concertDate,_ticketPrice,false,false,0,0);
         concertsRegister[concertCount] = newConcert;
         concertCount++;
     }
 
-//fonction validation concert 1/1
+
     function validateConcert(uint256 _concertId) public {
         bool isArtist = msg.sender ==
             artistsRegister[concertsRegister[_concertId].artistId].owner;
@@ -110,7 +110,7 @@ contract  TicketingSystem {
     }
     
 
-//fonction emitTicket 1/1
+
     function emitTicket(uint256 _concertId,address payable _ticketOwner) public {
             require(
                 msg.sender == artistsRegister[concertsRegister[_concertId].artistId].owner,
